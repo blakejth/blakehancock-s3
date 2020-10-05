@@ -14,6 +14,11 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+
+
+
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -49,8 +54,9 @@
                     </div>
                     <p class="lead mb-5">As a new graduate, I am excited to start my professional career applying what I have learned and gaining knowledge along the way benefiting both myself and my future employer.</p>
                     <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/blake-hancock/"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/blakejth"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="https://www.linkedin.com/in/blake-hancock/" data-toggle="tooltip" data-placement="top" title="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="https://github.com/blakejth" data-toggle="tooltip" data-placement="top" title="GitHub profile"><i class="fab fa-github"></i></a>
+                        <a class="social-icon" href="https://blakehancock.com/doc/resume_10-2020.pdf" data-toggle="tooltip" data-placement="top" title="Download PDF resume"><i class="fa fa-download"></i></a>
                         <!-- <a class="social-icon" href="#"><i class="fab fa-twitter"></i></a> 
                         <a class="social-icon" href="#"><i class="fab fa-facebook-f"></i></a>-->
                     </div>
@@ -257,5 +263,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <!--Tooltip function -->
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();   
+            });
+        </script>
+
+
     </body>
 </html>
