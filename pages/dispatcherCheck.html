@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Disptacher Check</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+			function runDispatcher(){
+		var playerID = document.getElementById("playerID").value;
+		
+		var playerName = document.getElementById("playerName").value;
+		playerName = playerName.replace(/\s+/g, '-').toLowerCase();
+		
+		document.getElementById("result1").innerHTML = "<a href='http://pgat-prod-dispatcher-65-use1a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html'> http://pgat-prod-dispatcher-65-use1a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html</a>";
+
+		document.getElementById("result2").innerHTML = "<a href='http://pgat-prod-dispatcher-65-use1b.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html'> http://pgat-prod-dispatcher-65-use1a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html</a>";
+
+		document.getElementById("result3").innerHTML = "<a href='http://pgat-prod-dispatcher-65-usw2a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html'> http://pgat-prod-dispatcher-65-use1a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html</a>";
+
+		document.getElementById("result4").innerHTML = "<a href='http://pgat-prod-dispatcher-65-usw2b.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html'> http://pgat-prod-dispatcher-65-use1a.ctmsp.com/content/pgatour/players/player."+playerID+"."+playerName+".html</a>";
+
+		}
+		</script>
+		
+		<h3>Check Player dispatchers</h3>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Player Name:</span>
+			<input id="playerName" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		<div class="input-group mb-3">
+			<span class="input-group-text" id="inputGroup-sizing-default">Player ID:</span>
+			<input id="playerID" type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+		</div>
+		
+		<br>
+		<button type="button" class="btn btn-secondary" onclick="runDispatcher()">Run</button>
+		<br><br>
+		<h5>use1a</h5>
+		<p id="result1"></p>
+		<br>
+		<h5>use1b</h5>
+		<p id="result2"></p>
+		<br>
+		<h5>usw2a</h5>
+		<p  id="result3"></p>
+		<br>
+		<h5>usw2b</h5>
+		<p class="link-secondary" id="result4"></p>
+	</body>
+</html>
