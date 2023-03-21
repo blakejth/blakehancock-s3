@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chat Room</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #chat-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #messages {
+      height: 300px;
+      border: 1px solid #ccc;
+      overflow-y: scroll;
+      margin-bottom: 10px;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    #username,
+    #message {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #send {
+      width: 100%;
+      padding: 5px;
+      background-color: #007bff;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    #send:hover {
+      background-color: #0056b3;
+    }
+
+    #send:active {
+      background-color: #003d79;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="messages"></div>
+    <input type="text" id="username" placeholder="Username">
+    <input type="text" id="message" placeholder="Message">
+    <button id="send">Send</button>
+  </div>
+
+  <script>
+    const API_BASE_URL = 'https://q96msl69y9.execute-api.us-east-1.amazonaws.com/PROD'; 
+
+    const messagesDiv = document.getElementById('messages');
+    const usernameInput = document.getElementById('username');
+    const messageInput = document.getElementById('message');
+    const sendButton = document.getElementById('send');
+
+    function displayMessage(username, message, timestamp) {
+      const messageDiv = document.createElement('div');
+      messageDiv.textContent = `[${timestamp}] ${username}: ${message}`;
+      messagesDiv.appendChild(messageDiv);
+    }
+
+    async function getMessages() {
+      const response = await fetch(`${API_BASE_URL}/prod/GetMessages`);
+      const messages = await response.json();
+      messagesDiv.innerHTML = '';
+      messages.forEach(msg => displayMessage(msg.Username, msg.Message, msg.Timestamp));
+    }
+
+    async function postMessage(username, message) {
+      await fetch(`${API_BASE_URL}/prod/PostMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username, message })
+      });
+    }
+
+    sendButton.addEventListener('click', async () => {
+      const username = usernameInput.value.trim();
+      const message = messageInput.value.trim();
+      if (username && message) {
+        await postMessage(username, message);
+        messageInput.value = '';
+        getMessages();
+      }
+    });
+
+    getMessages();
+  </script>
+</body>
+</html>
